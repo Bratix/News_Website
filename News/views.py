@@ -8,15 +8,6 @@ from django.contrib.auth.models import User
 from .models import Category, Article, UserProfile
 from django.core import serializers
 from django.http import JsonResponse
-import facebook
-import requests
-import urllib
-from optparse import OptionParser
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
-from django.contrib import messages
-from social_django.models import UserSocialAuth
 from django.db.models import Count
 
 class IndexView(View):
