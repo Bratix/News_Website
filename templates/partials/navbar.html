@@ -1,0 +1,98 @@
+<!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+      {% load staticfiles %}
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="{% url 'News:index'  %}"><img src="{% static 'img/core-img/Logo.png' %}" alt=""></a>
+                            </div>
+
+                            <!-- Login Search Area -->
+                            <div class="login-search-area d-flex align-items-center">
+                                <!-- Login -->
+                                <div class="login d-flex">
+                                    {% if user.is_authenticated and user.userprofile.username != "" %}
+                                    <a href="{% url 'News:edit_profile' user.userprofile.pk %}">{{user.userprofile.username}}</a>
+                                    <a href="{% url 'logout' %}">Logout</a>
+                                    {% else %}
+                                    
+                                    <a href="{% url 'login'  %}">Prijava</a>
+                                    <a href="{% url 'register' %}">Registracija</a>
+                                    {% endif %}
+                                </div>
+                                <!-- Search Form -->
+                                <div class="search-form">
+                                    <form action="{% url 'News:article_search' %}" method="get">
+                                    {% csrf_token %}
+                                        <input type="search" name="search" class="form-control" placeholder="Pretraga">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="newspaper-main-menu" id="stickyMenu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                        
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{% url 'News:index'  %}">Naslovnica</a></li>
+                                    <li><a href="#">Kategorije</a>
+                                        <ul class="dropdown">
+                                         <!-- Kategorije buduce -->
+                                         {% for category in all_categories %}
+                                            <li><a href="{% url 'News:category_detail' category.id %}">{{category.name}}</a></li>
+                                         {% endfor %}
+                                        </ul>
+                                    </li>
+
+                                    {% if user.is_authenticated and user.userprofile.username != ""  %}
+                                    <li><a href="{% url 'News:edit_profile' user.userprofile.pk %}">Vaš profil</a></li>
+                                    {% endif %}
+
+                                    {% if user.is_superuser  %}
+                                    <li><a href="/admin/">Admin panel</a></li>
+                                    {% endif %}
+                                    {% if user.is_staff  %}
+                                    <li><a href="{% url 'News:article_create' %}">Postavi članak</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->

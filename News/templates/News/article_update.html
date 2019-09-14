@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content%}
+{% load staticfiles %}
+<br>
+{% load widget_tweaks %}
+<div class = "container-field">
+        <div class="text-center"><h1><strong>Izmijenite članak:</strong></h1></div>
+        <br><br>
+
+    <div class="newsletter-widget">
+    <div class = "row">
+            
+            <div class = "col-md-4 offset-lg-4">
+                <form  action="{% url 'News:article_edit' article.id  %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        {% render_field form.title class="form-control"  value=article.title  %}
+                    </div>
+
+                    <div class="form-group">
+                        {% render_field form.text class="form-control" value=article.text %}
+                    </div>
+
+                    <label>Slika članka:</label>    
+                    <div class="form-group">
+                        {% render_field form.picture %}
+                    </div> 
+                    
+                    <label>Kategorija:</label> 
+                    <div class="form-group">
+                        {% render_field form.category class="form-control" data-value=blogpost.post_text%}
+                    </div>
+
+                    <div class = "form-horizontal">
+                        <div class="text-center">
+                            <button type="submit" class="btn contact-btn">Objavi</button>
+                        </div>    
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+        
+</div>
+
+{% endblock  %}
+
+{% block jscript %}
+<script src="{% static 'js/category_preselect.js' %}"></script>
+{% endblock jscript %}

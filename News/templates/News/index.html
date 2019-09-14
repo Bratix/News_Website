@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<!-- ##### Featured Post Area Start ##### -->
+    <br>
+    <div class="featured-post-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-8">
+                    <div class="row">
+
+                    {% for article in futured_articles|slice:":1" %}
+                    
+                        {% include "partials/post_thumb_1.html" %}
+                        
+                    {% endfor %}
+                        
+                        <div class="col-12 col-lg-5">
+                            {% for article in futured_articles|slice:"1:3" %}
+                                {% include "partials/post_thumb_2.html" %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">   
+                    {% for article in futured_articles|slice:"3:9" %}
+                        {% include "partials/post_thumb_3.html" %}
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Popular News Area Start ##### -->
+    
+    <div class="popular-news-area section-padding-80-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="section-heading">
+                        <h6>Popularne vijesti</h6>
+                    </div>
+                        {% for article in popular_news %}
+                            {% include "partials/post_thumb_2.html" %}
+                        {% endfor %}
+                    
+                            
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ##### Popular News Area End ##### -->
+
+{% endblock content %}
+

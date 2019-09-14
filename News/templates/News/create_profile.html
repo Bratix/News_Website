@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<br>
+{% load widget_tweaks %}
+<div class = "container-field">
+        <div class="text-center"><h1><strong>Napravite svoj korisnički profil:</strong></h1></div>
+        <br><br>
+
+    <div class="newsletter-widget">
+        <div class = "row">
+                
+            <div class = "col-md-4 col-md-offset-4">
+                <form  action="{% url 'News:create_profile'  %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        {% render_field form.username class="form-control"  placeholder="Unesite svoje korisničko ime"  %}
+                    </div>
+
+                    <label>Stavite sliku vašeg profila:</label>    
+                    <div class="form-group">
+                        {% render_field form.picture class="form-control" %}
+                    </div>
+
+                    <div class="form-group">
+                        {% render_field form.bio class="form-control" placeholder="Napišite nešto o sebi"%}
+                    </div>
+
+                    <div class = "form-horizontal">
+                        <div class="text-center">
+                            <button type="submit" class="btn contact-btn">Završi</button>
+                        </div>    
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+        
+
+</div>
+
+{% endblock  %}

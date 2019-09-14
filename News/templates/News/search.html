@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<div class="featured-post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-8">
+                <div class="row">
+
+                {% for article in object_list %}
+                    {% include "partials/post_thumb_2.html" %}
+                    
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

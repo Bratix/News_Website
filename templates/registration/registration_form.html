@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = "container-field">
+    <br>
+    <div class="text-center"><h2>Registrujte se:</h2></div>
+    
+
+    <div class="newsletter-widget">
+
+        <div class = "row">
+
+            <div class = "col-12 col-md-6 col-lg-4 offset-lg-4">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include "partials/basic_form.html" %}
+                        <div class = "form-horizontal">
+                            <div class="text-center">
+                                <button type="submit" class="btn w-100">Submit</button>
+                                <br>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+        </div>
+
+    </div>
+
+    
+
+</div>
+{% endblock %}
+
+

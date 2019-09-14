@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content%}
+{% load staticfiles %}
+<br>
+{% load widget_tweaks %}
+<div class = "container-field">
+        <div class="text-center"><h1><strong>Izmijenite vaš profil:</strong></h1></div>
+        <br><br>
+
+    <div class="newsletter-widget">
+    <div class = "row">
+            
+            <div class = "col-lg-4 offset-lg-4">
+                <form  action="{% url 'News:edit_profile' user.userprofile.id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <h6>Korisničko ime:</h6>
+                    <div class="form-group">
+                        {% render_field form.username class="form-control"  value=userprofile.username  %}
+                    </div>
+
+                    <label>Profilna slika:</label>    
+                    <div class="form-group">
+                        {% render_field form.picture class="picture" %}
+                    </div> 
+                    
+                    <h6>Biografija:</h6>
+                    <div class="form-group">
+                        {% render_field form.bio class="form-control" value=userprofile.bio %}
+                    </div>
+
+                    <div class = "form-horizontal">
+                        <div class="text-center">
+                            <button type="submit" class="btn contact-btn">Završi</button>
+                        </div>    
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+        
+
+</div>
+
+{% endblock  %}
+
+{% block jscript %}
+<script src="{% static 'js/category_preselect.js' %}"></script>
+{% endblock jscript %}
