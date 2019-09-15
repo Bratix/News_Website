@@ -1,0 +1,10 @@
+<!-- About Author -->
+<div class="blog-post-author d-flex">
+    <div class="author-thumbnail">
+        <img src="{{article.user.userprofile.picture.url}}" alt="">
+    </div>
+    <div class="author-info">
+        <a href="#" class="author-name">{{article.user.userprofile.username}}, <span>Autor članka</span></a>
+        <p>{{article.user.userprofile.bio|slice:":1000"}}</p>
+    </div>
+</div>

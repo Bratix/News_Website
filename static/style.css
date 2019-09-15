@@ -1211,3 +1211,58 @@ textarea:focus {
 
 /*# sourceMappingURL=style.css.map */
 
+.newsletter-widget-comment {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  padding: 0px 25px; }
+  .newsletter-widget-comment h4 {
+    text-align: center;
+    color: #ee002d; }
+  .newsletter-widget-comment p {
+    font-size: 12px;
+    text-align: center; }
+  .newsletter-widget-comment form input {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    font-size: 14px;
+    font-style: italic;
+    color: #ee002d;
+    margin-bottom: 3px;
+    padding: 0 25px; }
+  .newsletter-widget-comment form button {
+    width: 47%;
+    height: 20px;
+    background-color: #ee002d;
+    font-size: 14px;
+    font-style: italic;
+    color: #fff;
+    border: none;
+    padding: 0 25px;
+    border-radius: 0;
+    display: inline; }
+    .newsletter-widget-comment form button:hover, .newsletter-widget-comment form button:focus {
+      -webkit-transition-duration: 500ms;
+      transition-duration: 500ms;
+      background-color: black;
+      color: #ee002d; }
+
+    .update-com {
+      width: 47%;
+      height: 20px;
+      background-color: #ee002d;
+      font-size: 14px;
+      font-style: italic;
+      color: black;
+      border: none;
+      padding: 0 25px;
+      border-radius: 0;
+      margin-left: 30%;
+      display: inline; }
+      .update-com:hover, .update-com:focus {
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        background-color: black;
+        color: #ee002d; 
+      text-decoration: none;}

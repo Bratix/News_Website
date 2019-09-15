@@ -1,0 +1,133 @@
+<!-- Comment Area Start -->
+<div class="comment_area clearfix">
+{% if article.comment_set.count == 1 %}
+    <h5 class="title" id="comment-count-main">{{article.comment_set.count}} komentar</h5>
+{% else %}
+    <h5 class="title" id="comment-count-main">{{article.comment_set.count}} komentara</h5>
+{% endif %}
+    
+
+    <ol id="comment-area-list">
+
+    {% for comment in article.comment_set.all %}
+    <!-- Single Comment Area -->
+        <li class="single_comment_area" id="comment{{comment.id}}">
+            <!-- Comment Content -->
+            <div class="comment-content d-flex">
+                <!-- Comment Author -->
+                <div class="comment-author">
+                    <img src="{{comment.user.userprofile.picture.url}}" alt="author">
+                    
+                </div>
+                <!-- Comment Meta -->
+                <div class="comment-meta">
+                    <a href="#" class="post-author">{{comment.user.userprofile.username}}</a>
+                    
+                    <a href="#" class="post-date">{{comment.creation_date|date:'H:i'}}</span> | <span>{{comment.creation_date|date:'d M'}}</a>
+                    <p id="comtext">{{comment.comment_text}}</p>
+                    <div class="comment-text-update padding-bottom-10 d-none">
+                        <div class="newsletter-widget-comment">
+                            <textarea class="form-control" name="comment_text" id="comment_text" maxlength="3000" cols="30" rows="10" required >{{comment.comment_text}}</textarea>
+                            
+                                    <br>
+                                    <button data-url="{% url 'News:comment_edit' comment.id %}" type="submit" class="btn btn-link update-com text-center">Confirm</button>   
+                                    <br>   <br>     
+                            
+                        </div>
+                        
+                    </div>
+                    {% if  user == comment.user %}
+                    <div class="newsletter-widget-comment">
+                        <div class = "row">
+                            <form action="#" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <a href="#"><button type="button" class="btn contact-btn btn-cupdate" style="display:inline;">Izmijeni komentar</button></a> &nbsp;&nbsp;&nbsp;
+                                    <a href="#"><button type="button" data-url="{% url 'News:comment_delete' comment.id %}" class="btn contact-btn btn-cdelete" style="display:inline;">Izbriši komentar</button></a>                                    
+                            </form> 
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+                <br><br><br>
+                
+                
+            </div>
+            
+        </li>
+    {% endfor %}
+
+    </ol>
+</div>
+
+                
+                    
+<!-- Reply Form -->                  
+{% if user.is_authenticated %}
+<div class="post-a-comment-area section-padding-80-0">
+    <h4>Leave a comment</h4>
+        <div class="contact-form-area">
+            <form action="#" method="#" data-action="{% url 'News:comment_create' article.pk %}" class="comment-form">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <textarea name="message" class="form-control" id="id_comment_text" cols="30" rows="10" placeholder="Napiši svoj komentar ovdje"></textarea>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button class="btn newspaper-btn mt-30 w-100" type="submit">Submit Comment</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+{% endif %}
+        
+        
+<!-- Single comment for jquery -->
+<div style="visibility: hidden;">
+    <li class="single_comment_area" id="emptycom">
+            <!-- Comment Content -->
+    <div class="comment-content d-flex">
+        <!-- Comment Author -->
+        <div class="comment-author">
+            <img src="" alt="author" id="imgLocation">
+            
+        </div>
+        <!-- Comment Meta -->
+        <div class="comment-meta">
+            <a href="#" class="post-author" id="comuser"></a>
+            
+            <a href="#" class="post-date" id="comdate"></a>
+            <p id="comtext">{{comment.comment_text}}</p>
+            <div class="comment-text-update padding-bottom-10 d-none">
+                <div class="newsletter-widget-comment">
+                    <textarea class="form-control" name="comment_text" id="comment_text" maxlength="3000" cols="30" rows="10" required >{{comment.comment_text}}</textarea>
+                    
+                    <br>
+                    <button data-url="{% url 'News:comment_edit' 0 %}" type="submit" class="btn btn-link update-com text-center">Confirm</button>   
+                    <br>   <br>     
+                    
+                </div>
+                
+            </div>
+            
+            <div class="newsletter-widget-comment">
+                <div class = "row">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <a href="#"><button type="button" class="btn contact-btn btn-cupdate" style="display:inline;">Izmijeni komentar</button></a> &nbsp;&nbsp;&nbsp;
+                            <a href="#"><button type="button" data-url="{% url 'News:comment_delete' 0 %}" class="btn contact-btn btn-cdelete" style="display:inline;">Izbriši komentar</button></a>                                    
+                    </form> 
+                </div>
+            </div>
+            
+            
+        </div>
+        <br><br><br>
+        
+        
+    </div>
+
+    </li>
+</div>
+

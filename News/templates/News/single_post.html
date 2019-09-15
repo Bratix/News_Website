@@ -9,108 +9,20 @@
             <div class="row">
                 <div class="col-12 col-lg-12">
                     <div class="blog-posts-area">
-
-                        <!-- Single Featured Post -->
-                        <div class="single-blog-post featured-post single-post">
-
-                            <div class="post-thumb text-center">
-                                <a href="#"><img src="{{article.picture.url}}" alt=""></a>
-                            </div>
-
-                            <div class="post-data">
-                                <a href="#" class="post-catagory">{{article.category.name}}</a>
-                                <a href="#" class="post-title">
-                                    <h6>{{article.title}}</h6>
-                                </a>
-                                <div class="post-meta">
-                                    <p class="post-author">By <a href="#">{{article.user.userprofile.username}}</a></p>
-
-                                    <pre>{{article.text}}</pre>
-
-                                    <div class="newspaper-post-like d-flex align-items-center justify-content-between">
-                                        <!-- Post Like & Post Comment -->
-                                        <div class="d-flex align-items-center post-like--comments">
-                                            <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>{{article.comment_set.count}}</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% if  user == article.user%}
-                        <a href="{% url 'News:article_edit' article.id %}">Izmijeni članak</a> 
-                        <a href="#">Izbriši članak</a> 
-                        {% endif %}
                         
-                        <!-- About Author -->
-                        <div class="blog-post-author d-flex">
-                            <div class="author-thumbnail">
-                                <img src="{{article.user.userprofile.picture.url}}" alt="">
-                            </div>
-                            <div class="author-info">
-                                <a href="#" class="author-name">{{article.user.userprofile.username}}, <span>Autor članka</span></a>
-                                <p>{{article.user.userprofile.bio|slice:":1000"}}</p>
-                            </div>
-                        </div>
+                        {% include "partials/post_content.html" %} 
 
+                        {% include "partials/about_author.html" %}   
 
-                        
-
-                        <!-- Comment Area Start -->
-                        <div class="comment_area clearfix">
-                            <h5 class="title">{{article.comment_set.count}} Komentara</h5>
-
-                            <ol>
-
-                            {% for comment in article.comment_set.all %}
-                            <!-- Single Comment Area -->
-                                <li class="single_comment_area">
-                                    <!-- Comment Content -->
-                                    <div class="comment-content d-flex">
-                                        <!-- Comment Author -->
-                                        <div class="comment-author">
-                                            <img src="{{comment.user.userprofile.picture.url}}" alt="author">
-                                        </div>
-                                        <!-- Comment Meta -->
-                                        <div class="comment-meta">
-                                            <a href="#" class="post-author">{{comment.user.userprofile.username}}</a>
-                                            <a href="#" class="post-date">DATE</a>
-                                            <p>{{comment.comment_text}}</p>
-                                        </div>
-                                    </div>
-                                    
-                                </li>
-                            {% endfor %}
-
-                            </ol>
-                        </div>
-
-                        
-                            
-                            
-                            {% if user.is_authenticated %}
-                            <div class="post-a-comment-area section-padding-80-0">
-                                <h4>Leave a comment</h4>
-                                    <div class="contact-form-area">
-                                        <form action="#" method="post">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Napiši svoj komentar ovdje"></textarea>
-                                                </div>
-                                                <div class="col-12 text-center">
-                                                    <button class="btn newspaper-btn mt-30 w-100" type="submit">Submit Comment</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                            </div>
-                            {% endif %}
-                            
-                            <!-- Reply Form -->
-                        
-                    </div>
                 </div>
-            </div>
-        </div>
+            </div>                        
+        </div>    
+        
+{% include "partials/comment_area.html" %}   
 
+</div>                        
 {% endblock content %}
 
+{% block jscript %}
+<script src="{% static 'js/post-delete-update-comment.js' %}"></script>
+{% endblock jscript %}

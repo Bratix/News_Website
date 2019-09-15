@@ -24,4 +24,11 @@ urlpatterns = [
     path('article_create', views.ArticleCreate.as_view(), name = "article_create"),
     #create articles
     path('article_edit/<pk>', views.ArticleEdit.as_view(), name = "article_edit"),
+
+    #create comment
+    path('comment/<pk>', views.CommentCreate.as_view(), name = "comment_create"),
+    #edit comment
+    path('comment/edit/<pk>', views.CommentUpdate.as_view(), name = "comment_edit"),
+    #delete comment
+    path('comment/delete/<pk>', views.CommentDelete.as_view(), name = "comment_delete"),
 ]

@@ -1,0 +1,38 @@
+<!-- Single Featured Post -->
+{% load staticfiles %}
+<div class="single-blog-post featured-post single-post">
+
+    <div class="post-thumb text-center">
+        <a href="#"><img src="{{article.picture.url}}" alt=""></a>
+    </div>
+
+    <div class="post-data">
+        <a href="#" class="post-catagory">{{article.category.name}}</a>
+        <a href="#" class="post-title">
+            <h6>{{article.title}}</h6>
+        </a>
+        <div class="post-meta">
+            <p class="post-author">By <a href="#">{{article.user.userprofile.username}}</a></p>
+            <a href="#" class="post-date">{{article.creation_date|date:'H:i'}}</span> | <span>{{article.creation_date|date:'d M'}}</a><br><br>
+            <pre>{{article.text}}</pre>
+
+            <div class="newspaper-post-like d-flex align-items-center justify-content-between">
+                <!-- Post Like & Post Comment -->
+                <div class="d-flex align-items-center post-like--comments">
+                    <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span id="comment-count">{{article.comment_set.count}}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if  user == article.user%}
+<div class="newsletter-widget">
+    <div class = "row">
+    <form  action="#" method="" enctype="multipart/form-data">
+            {% csrf_token %}
+                    <a href="{% url 'News:article_edit' article.id %}"><button type="button" class="btn contact-btn">Izmijeni članak</button></a> &nbsp;&nbsp;&nbsp;
+                <a href="#"><button type="button" class="btn contact-btn">Izbriši članak</button></a>                                    
+    </form> 
+    </div>
+</div>
+{% endif %}
