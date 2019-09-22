@@ -52,6 +52,12 @@ class ArticleEdit(UpdateView):
     fields = ['title','text','picture','category']
     template_name = "News/article_update.html"
 
+class ArticleDelete(DeleteView):
+    model = Article
+
+    def get_success_url(self):
+        return reverse_lazy('News:index')
+
 class UserProfileEdit(UpdateView):
     model = UserProfile
     fields = ['username','picture','bio']

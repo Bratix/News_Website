@@ -22,8 +22,10 @@ urlpatterns = [
     path('article/<pk>', views.ArticleDetail.as_view(), name = "article_detail"),
     #create articles
     path('article_create', views.ArticleCreate.as_view(), name = "article_create"),
-    #create articles
+    #edit articles
     path('article_edit/<pk>', views.ArticleEdit.as_view(), name = "article_edit"),
+    #edit articles
+    path('article_delete/<pk>', views.ArticleDelete.as_view(), name = "article_delete"),
 
     #create comment
     path('comment/<pk>', views.CommentCreate.as_view(), name = "comment_create"),
