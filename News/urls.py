@@ -33,4 +33,7 @@ urlpatterns = [
     path('comment/edit/<pk>', views.CommentUpdate.as_view(), name = "comment_edit"),
     #delete comment
     path('comment/delete/<pk>', views.CommentDelete.as_view(), name = "comment_delete"),
+
+    #contact us
+    path('contact_us', views.ContactUs.as_view(), name="contact_us")
 ]

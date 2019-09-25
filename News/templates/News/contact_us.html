@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load widget_tweaks %}
+<div class = "container-field">
+    <br>
+    <div class="text-center"><h2>Napišite nam mail :</h2></div>
+        
+
+    <div class="newsletter-widget">
+        <div class = "row">
+                
+            <div class = "col-md-4 offset-lg-4">
+                <form  action="#" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" name="subject" required class="form-control" placeholder="Naslov">
+                    <textarea name="my_textarea" cols="30" rows="10" required class="form-control" placeholder="Vaš tekst"></textarea><br><br>
+                    
+                    <div class = "form-horizontal">
+                        <div class="text-center">
+                            <button type="submit" class="btn contact-btn">Pošalji</button>
+                        </div>    
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+        
+
+</div>
+
+{% endblock content %}

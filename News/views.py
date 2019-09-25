@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .models import Category, Article, UserProfile, Comment
 from django.core import serializers
+from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.db.models import Count
 
@@ -14,6 +15,23 @@ class IndexView(View):
     def get(self, request):
         context = {'all_categories': Category.objects.order_by('name'),'futured_articles': Article.objects.order_by('-creation_date')[:9],'popular_news': Article.objects.annotate(count=Count('comment')).order_by('-count')[:7]}
         return render(request, 'News/index.html',context)
+
+class ContactUs(View):
+    def get(self, request):
+        return render(request, 'News/contact_us.html')
+    def post(self, request):
+        subject = self.request.POST.get('subject')
+        text = self.request.POST.get('my_textarea')
+        print(subject,text)
+        send_mail(
+        subject,
+        text,
+        self.request.user.userprofile.username,
+        ['amarrbratic@gmail.com'],
+        fail_silently=False,
+        )
+        return redirect('News:index')
+
 
 class ArticlesbyCategoryView(generic.ListView):
     template_name = 'News/category_articles.html'

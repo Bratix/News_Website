@@ -3,13 +3,12 @@ from django.urls import reverse
 from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
-from taggit.managers import TaggableManager
 
 # Create your models here.
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
-    picture = models.FileField(null = True, blank = True) 
+    picture = models.FileField(blank = False, default="defalut_user.png") 
     bio = models.TextField()
     username = models.CharField(max_length = 30)
 
@@ -21,7 +20,8 @@ class UserProfile(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length = 30)
-    picture = models.FileField(null = True, blank = True)
+
+    picture = models.FileField(blank = False)
     
     def __str__(self):
         return self.name
@@ -31,7 +31,7 @@ class Article(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
     title = models.CharField(max_length = 120)
     text = models.TextField()
-    picture = models.FileField(null = True, blank = True)
+    picture = models.FileField(blank = False)
     creation_date = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

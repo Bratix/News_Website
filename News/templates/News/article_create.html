@@ -17,21 +17,21 @@
                     {% csrf_token %}
 
                     <div class="form-group">
-                        {% render_field form.title class="form-control"  placeholder="Naslov članka"  %}
+                        {% render_field form.title class="form-control"  placeholder="Naslov članka"   %}
                     </div>
 
                     <div class="form-group">
-                        {% render_field form.text class="form-control" placeholder="Tekst članka"%}
+                        {% render_field form.text class="form-control" placeholder="Tekst članka"  %}
                     </div>
 
                     <label>Slika članka:</label>    
                     <div class="form-group">
-                        {% render_field form.picture class="form-control" %}
+                        {% render_field form.picture class="form-control"  %}
                     </div>
                     
                     <label>Kategorija:</label> 
                     <div class="form-group">
-                        {% render_field form.category class="form-control" %}
+                        {% render_field form.category class="form-control"  %}
                     </div>
 
                     <div class = "form-horizontal">

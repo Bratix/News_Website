@@ -40,7 +40,7 @@ $(document).ready(function(){
             
 
             var Com = $("#emptycom").clone().attr('id','comment'+data.pk).fadeIn(600)
-            Com.find("#comdate").html(('0'+date.getHours()).slice(-2)-2+":"+('0'+date.getMinutes()).slice(-2)+" | "+date.getDate()+" "+monthNames[date.getMonth()])
+            Com.find("#comdate").html(('0'+date.getHours()).slice(-2)+":"+('0'+date.getMinutes()).slice(-2)+" | "+date.getDate()+" "+monthNames[date.getMonth()])
             Com.find("#comuser").html(data.user)   
             Com.find("#comtext").html(data.comment_text)
             Com.find('#imgLocation').attr('src',data.picture_url)

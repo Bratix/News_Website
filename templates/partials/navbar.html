@@ -77,6 +77,7 @@
 
                                     {% if user.is_authenticated and user.userprofile.username != ""  %}
                                     <li><a href="{% url 'News:edit_profile' user.userprofile.pk %}">Vaš profil</a></li>
+                                    <li><a href="{% url 'News:contact_us' %}">Kontaktirajte nas</a></li>
                                     {% endif %}
 
                                     {% if user.is_superuser  %}
